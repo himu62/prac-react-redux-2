@@ -1,10 +1,7 @@
 var webpack = require('webpack');
 var path = require('path');
-var ExtractTextPlugin = require('extract-text-webpack-plugin');
-var autoprefixer = require('autoprefixer');
 
 var plugins = [];
-var css_loader = 'css-loader!postcss-loader!sass-loader';
 if(process.env.NODE_ENV === 'production') {
 	plugins = [
 		new webpack.optimize.UglifyJsPlugin(),
@@ -15,7 +12,6 @@ if(process.env.NODE_ENV === 'production') {
 			}
 		})
 	];
-	css_loader = 'css-loader?minimize!postcss-loader!sass-loader';
 }
 
 module.exports = [
@@ -37,30 +33,5 @@ module.exports = [
 			]
 		},
 		plugins: plugins
-	},
-	{
-		entry: path.join(__dirname, 'style/style.scss'),
-		output: {
-			filename: 'style.css'
-		},
-		resolve: {
-			extensions: ['', '.scss', '.css']
-		},
-		module: {
-			loaders: [
-				{
-					test: /\.scss$/,
-					loader: ExtractTextPlugin.extract('style-loader', css_loader)
-				}
-			]
-		},
-		plugins: [
-			new ExtractTextPlugin('style.css')
-		],
-		postcss: [
-			autoprefixer({
-				browsers: ['last 2 versions']
-			})
-		]
 	}
 ];
