@@ -11,15 +11,7 @@ interface Props {
 }
 
 export default class TodoList extends React.Component<Props, {}> {
-	constructor(props) {
-		super(props);
-	}
-
 	render() {
-		if(!this.props.todos) {
-			return <ul>aaa</ul>;
-		}
-
 		return (
 			<ul>
 				{this.props.todos.map(todo =>

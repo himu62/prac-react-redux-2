@@ -7,10 +7,6 @@ interface Props {
 }
 
 export default class Todo extends React.Component<Props, {}> {
-	constructor({onClick, completed, text}) {
-		super({onClick, completed, text});
-	}
-
 	render() {
 		return (
 			<li
